@@ -36,7 +36,7 @@ def get_parameters():
 
 def rnn(_inputs, initial_state, *parameters):
     H = initial_state
-    W_xh, W_hh, b_h, W_hy, b _y = parameters
+    W_xh, W_hh, b_h, W_hy, b_y = parameters
     _outputs = []
 
     for X in _inputs:
