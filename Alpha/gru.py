@@ -1,4 +1,3 @@
-import mxnet as mx
 from mxnet import nd
 
 
@@ -39,7 +38,11 @@ def get_parameters():
     W_hy = nd.random_normal(scale=config.std, shape=(config.hidden_dim, config.output_dim))
     b_y = nd.zeros(shape=config.output_dim)
 
-    parameters = [W_xz, W_hz, b_z, W_xr, W_hr, b_r, W_xh, W_hh, b_h, W_hy, b_y]
+    parameters = [W_xz, W_hz, b_z,
+                  W_xr, W_hr, b_r,
+                  W_xh, W_hh, b_h,
+                  W_hy, b_y]
+
     for parameter in parameters:
         parameter.attach_grad()
 
@@ -49,8 +52,14 @@ def get_parameters():
 def gru(_inputs, initial_state, *parameters):
     # _inputs: a list with length num_steps,
     # corresponding element: batch_size * input_dim matrix
+
     H = initial_state
-    W_xz, W_hz, b_z, W_xr, W_hr, b_r, W_xh, W_hh, b_h, W_hy, b_y = parameters
+
+    [W_xz, W_hz, b_z,
+     W_xr, W_hr, b_r,
+     W_xh, W_hh, b_h,
+     W_hy, b_y] = parameters
+
     _outputs = []
 
     for X in _inputs:
