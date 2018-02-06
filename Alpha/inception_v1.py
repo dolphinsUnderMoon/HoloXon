@@ -5,8 +5,6 @@ from mxnet import nd
 class Config:
     def __init__(self):
         self.num_classes = 10
-        self.full_connection_dim = 4096
-        self.dropout_probability = 0.5
 
         self.std = 1e-2
 
@@ -116,7 +114,7 @@ class GoogLeNet(nn.Block):
         for i, block in enumerate(self.net):
             out = block(out)
             if self.verbose:
-                print("Block %d output: %s" % (i+1, out.shape))
+                print("Block %d output\'s shape: %s" % (i + 1, out.shape))
 
         return out
 
