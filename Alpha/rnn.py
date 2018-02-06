@@ -43,7 +43,9 @@ def rnn(_inputs, initial_state, *parameters):
     _outputs = []
 
     for X in _inputs:
+        # compute hidden state from input and last/initial hidden state
         H = nd.tanh(nd.dot(X, W_xh) + nd.dot(H, W_hh) + b_h)
+        # compute output from hidden state
         Y = nd.dot(H, W_hy) + b_y
         _outputs.append(Y)
 
